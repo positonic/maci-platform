@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useMemo, useCallback, useEffect } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { zeroAddress } from "viem";
-import { useAccount } from "wagmi";
+import { useWaaP } from "~/hooks/useWaaP";
 
 import { Button } from "~/components/ui/Button";
 import { Spinner } from "~/components/ui/Spinner";
@@ -33,7 +33,7 @@ export const ReviewBar = ({ pollId, projectId, edition = undefined }: IReviewBar
   const proposal = useRequestByProjectId(projectId, round?.registryAddress ?? zeroAddress);
   const approve = useApproveRequest({});
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const isApproved = useMemo(() => {
     if (proposal.data && (proposal.data as unknown as IRequest).status.toString() === "Approved") {

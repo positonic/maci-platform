@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useAccount } from "wagmi";
 
 import ConnectButton from "~/components/ConnectButton";
+import { useWaaP } from "~/hooks/useWaaP";
 import { Info } from "~/components/Info";
 import { JoinButton } from "~/components/JoinButton";
 import { Button } from "~/components/ui/Button";
@@ -16,7 +16,7 @@ interface ISingleRoundHomeProps {
 }
 
 export const SingleRoundHome = ({ round }: ISingleRoundHomeProps): JSX.Element => {
-  const { isConnected } = useAccount();
+  const { isConnected } = useWaaP();
   const { isRegistered } = useMaci();
   const isMobile = useIsMobile();
   const roundState = useRoundState({ pollId: round.pollId });

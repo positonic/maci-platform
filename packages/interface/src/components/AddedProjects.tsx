@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { Hex, zeroAddress } from "viem";
-import { useAccount } from "wagmi";
 
 import { useBallot } from "~/contexts/Ballot";
+import { useWaaP } from "~/hooks/useWaaP";
 import { useRound } from "~/contexts/Round";
 import { useProjectCount } from "~/features/projects/hooks/useProjects";
 
@@ -12,7 +12,7 @@ interface IAddedProjectsProps {
 
 export const AddedProjects = ({ pollId }: IAddedProjectsProps): JSX.Element => {
   const { getBallot } = useBallot();
-  const { chain } = useAccount();
+  const { chain } = useWaaP();
   const { getRoundByPollId } = useRound();
 
   const round = useMemo(() => getRoundByPollId(pollId), [pollId, getRoundByPollId]);

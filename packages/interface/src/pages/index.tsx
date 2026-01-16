@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { useAccount } from "wagmi";
 
 import ConnectButton from "~/components/ConnectButton";
+import { useWaaP } from "~/hooks/useWaaP";
 import { JoinButton } from "~/components/JoinButton";
 import { SingleRoundHome } from "~/components/SingleRoundHome";
 import { Button } from "~/components/ui/Button";
@@ -16,7 +16,7 @@ import { useIsAdmin } from "~/hooks/useIsAdmin";
 import { Layout } from "~/layouts/DefaultLayout";
 
 const HomePage = (): JSX.Element => {
-  const { isConnected } = useAccount();
+  const { isConnected } = useWaaP();
   const { isRegistered } = useMaci();
   const isAdmin = useIsAdmin();
   const { rounds } = useRound();

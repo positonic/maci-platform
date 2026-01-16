@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
 import { Controller } from "react-hook-form";
 import { toast } from "sonner";
-import { useAccount } from "wagmi";
 
 import { ImageUpload } from "~/components/ImageUpload";
+import { useWaaP } from "~/hooks/useWaaP";
 import { FieldArray, Form, FormControl, FormSection, Textarea } from "~/components/ui/Form";
 import { Input } from "~/components/ui/Input";
 import { useIsCorrectNetwork } from "~/hooks/useIsCorrectNetwork";
@@ -25,7 +25,7 @@ interface IMetadataFormProps {
 export const MetadataForm = ({ pollId }: IMetadataFormProps): JSX.Element => {
   const { isCorrectNetwork, correctNetwork } = useIsCorrectNetwork();
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const router = useRouter();
 

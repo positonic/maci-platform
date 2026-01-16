@@ -1,8 +1,8 @@
 import { GatekeeperTrait } from "maci-cli/sdk";
 import { useMemo } from "react";
-import { useAccount } from "wagmi";
 
 import Header from "~/components/Header";
+import { useWaaP } from "~/hooks/useWaaP";
 import { Info } from "~/components/Info";
 import { Notice } from "~/components/ui/Notice";
 import { config } from "~/config";
@@ -17,7 +17,7 @@ import type { ILayoutProps } from "./types";
 import { BaseLayout } from "./BaseLayout";
 
 export const Layout = ({ children = null, ...props }: ILayoutProps): JSX.Element => {
-  const { address } = useAccount();
+  const { address } = useWaaP();
   const roundState = useRoundState({ pollId: props.pollId ?? "" });
   const { getBallot } = useBallot();
   const { isRegistered, gatekeeperTrait } = useMaci();
@@ -100,7 +100,7 @@ export const Layout = ({ children = null, ...props }: ILayoutProps): JSX.Element
 
 export const LayoutWithSidebar = ({ ...props }: ILayoutProps): JSX.Element => {
   const { isRegistered } = useMaci();
-  const { address } = useAccount();
+  const { address } = useWaaP();
   const { getBallot } = useBallot();
 
   const roundState = useRoundState({ pollId: props.pollId ?? "" });

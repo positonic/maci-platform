@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useMemo, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import Markdown from "react-markdown";
-import { useAccount } from "wagmi";
+import { useWaaP } from "~/hooks/useWaaP";
 
 import { Heading } from "~/components/ui/Heading";
 import { markdownComponents } from "~/components/ui/MarkdownComponents";
@@ -52,7 +52,7 @@ export const ReviewProposalDetails = (): JSX.Element => {
 
   const metadata = useMemo(() => form.getValues(), [form]);
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   return (
     <div className="markdown-support flex flex-col gap-10">

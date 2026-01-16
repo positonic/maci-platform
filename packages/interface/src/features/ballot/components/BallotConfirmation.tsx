@@ -5,9 +5,9 @@ import { FaXTwitter, FaThreads } from "react-icons/fa6";
 import { SiFarcaster } from "react-icons/si";
 import { tv } from "tailwind-variants";
 import { Hex } from "viem";
-import { useAccount } from "wagmi";
 
 import { createComponent } from "~/components/ui";
+import { useWaaP } from "~/hooks/useWaaP";
 import { Button } from "~/components/ui/Button";
 import { Heading } from "~/components/ui/Heading";
 import { Notice } from "~/components/ui/Notice";
@@ -59,7 +59,7 @@ export const BallotConfirmation = ({ pollId }: IBallotConfirmationProps): JSX.El
   const ballot = useMemo(() => getBallot(pollId), [pollId, getBallot]);
   const allocations = ballot.votes;
 
-  const { chain } = useAccount();
+  const { chain } = useWaaP();
   const { data: projectCount } = useProjectCount({
     registryAddress: round?.registryAddress as Hex,
     chain: chain!,

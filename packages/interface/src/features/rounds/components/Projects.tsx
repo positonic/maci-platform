@@ -3,9 +3,9 @@ import Link from "next/link";
 import { useCallback, useDeferredValue, useMemo, useState } from "react";
 import { FiAlertCircle } from "react-icons/fi";
 import { Hex, zeroAddress } from "viem";
-import { useAccount } from "wagmi";
 
 import { InfiniteLoading } from "~/components/InfiniteLoading";
+import { useWaaP } from "~/hooks/useWaaP";
 import { SortFilter } from "~/components/SortFilter";
 import { Button } from "~/components/ui/Button";
 import { Heading } from "~/components/ui/Heading";
@@ -34,7 +34,7 @@ export const Projects = ({ pollId = "" }: IProjectsProps): JSX.Element => {
 
   const roundState = useRoundState({ pollId });
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const { getRoundByPollId } = useRound();
   const round = useMemo(() => getRoundByPollId(pollId), [pollId, getRoundByPollId]);

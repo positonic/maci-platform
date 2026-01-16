@@ -1,6 +1,6 @@
 import { useMemo, useCallback, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useAccount } from "wagmi";
+import { useWaaP } from "~/hooks/useWaaP";
 
 import { Button, IconButton } from "~/components/ui/Button";
 import { Dialog } from "~/components/ui/Dialog";
@@ -33,7 +33,7 @@ export const MetadataButtons = ({
 }: IMetadataButtonsProps): JSX.Element => {
   const { isCorrectNetwork } = useIsCorrectNetwork();
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const [showDialog, setShowDialog] = useState<boolean>(false);
 

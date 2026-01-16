@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
 import { toast } from "sonner";
-import { useAccount } from "wagmi";
+import { useWaaP } from "~/hooks/useWaaP";
 
 import { ImageUpload } from "~/components/ImageUpload";
 import { FieldArray, Form, FormControl, FormSection, Select, Textarea } from "~/components/ui/Form";
@@ -26,7 +26,7 @@ interface IEditMetadataFormProps {
 export const EditMetadataForm = ({ pollId, project }: IEditMetadataFormProps): JSX.Element => {
   const { isCorrectNetwork, correctNetwork } = useIsCorrectNetwork();
 
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const router = useRouter();
 

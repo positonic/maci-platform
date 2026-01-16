@@ -1,6 +1,5 @@
-import { useEnsAvatar, useEnsName } from "wagmi";
-
 import { Avatar } from "~/components/ui/Avatar";
+import { useENS } from "~/hooks/useENS";
 import { truncate } from "~/utils/truncate";
 
 import type { Address } from "viem";
@@ -10,21 +9,11 @@ interface IENSProps {
 }
 
 export const AvatarENS = ({ address = "0x" }: IENSProps): JSX.Element => {
-  const { data: name } = useEnsName({
-    address,
-    chainId: 1,
-    query: {
-      enabled: Boolean(address),
-    },
-  });
+  const { name, avatar } = useENS(address);
 
-  const { data: src } = useEnsAvatar({
-    name: name ?? undefined,
-    query: { enabled: Boolean(name) },
-  });
   return (
     <div className="flex items-center gap-2">
-      <Avatar rounded="full" size="xs" src={src || undefined} />
+      <Avatar rounded="full" size="xs" src={avatar || undefined} />
 
       <div>{name ?? truncate(address)}</div>
     </div>
@@ -32,13 +21,7 @@ export const AvatarENS = ({ address = "0x" }: IENSProps): JSX.Element => {
 };
 
 export const NameENS = ({ address = "0x" }: IENSProps): JSX.Element => {
-  const { data: name } = useEnsName({
-    address,
-    chainId: 1,
-    query: {
-      enabled: Boolean(address),
-    },
-  });
+  const { name } = useENS(address);
 
   return <div>{name ?? truncate(address)}</div>;
 };

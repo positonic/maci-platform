@@ -1,27 +1,29 @@
-import { ConnectButton as RainbowConnectButton } from "@rainbow-me/rainbowkit";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useMemo } from "react";
 
 import { config } from "~/config";
+import { useENS, formatAddressOrENS } from "~/hooks/useENS";
 import { useIsMobile } from "~/hooks/useIsMobile";
+import { useWaaP } from "~/hooks/useWaaP";
 
 import { Button } from "./ui/Button";
 import { Chip } from "./ui/Chip";
 
 interface IConnectedDetailsProps {
-  account: { address: string; displayName: string; ensName?: string };
-  openAccountModal: () => void;
+  address: `0x${string}`;
+  onDisconnect: () => void;
   isMobile: boolean;
 }
 
-const ConnectedDetails = ({ openAccountModal, account, isMobile }: IConnectedDetailsProps) => {
-  const displayName = isMobile ? null : account.ensName || account.displayName;
+const ConnectedDetails = ({ address, onDisconnect, isMobile }: IConnectedDetailsProps) => {
+  const { name: ensName } = useENS(address);
+  const displayName = isMobile ? null : formatAddressOrENS(address, ensName);
 
   return (
     <div>
       <div className="flex gap-2 text-white">
-        <Chip color="neutral" onClick={openAccountModal}>
+        <Chip color="neutral" onClick={onDisconnect}>
           <span className="font-sans text-base font-bold leading-none">{displayName}</span>
 
           <Image alt="dropdown" height="18" src="/dropdown.svg" width="18" />
@@ -37,51 +39,43 @@ interface IConnectButtonProps {
 
 const ConnectButton = ({ showMobile }: IConnectButtonProps): JSX.Element | null => {
   const isMobile = useIsMobile();
+  const { address, isConnected, isConnecting, isInitialized, chainId, connect, disconnect, switchChain } = useWaaP();
 
   const isShow = useMemo(() => showMobile === isMobile, [isMobile, showMobile]);
 
-  return isShow ? (
-    <RainbowConnectButton.Custom>
-      {({ account, chain, openAccountModal, openChainModal, openConnectModal, mounted, authenticationStatus }) => {
-        const ready = mounted && authenticationStatus !== "loading";
-        const connected =
-          ready && account && chain && (!authenticationStatus || authenticationStatus === "authenticated");
+  if (!isShow) {
+    return null;
+  }
 
-        return (
-          <div
-            {...(!mounted && {
-              "aria-hidden": true,
-              style: {
-                opacity: 0,
-                pointerEvents: "none",
-                userSelect: "none",
-              },
-            })}
-          >
-            {(() => {
-              if (!connected) {
-                return (
-                  <Button suppressHydrationWarning variant="secondary" onClick={openConnectModal}>
-                    <p>Connect wallet</p>
-                  </Button>
-                );
-              }
+  // Show loading state while WAAP is initializing
+  if (!isInitialized) {
+    return (
+      <Button suppressHydrationWarning variant="secondary" disabled>
+        <p>Loading...</p>
+      </Button>
+    );
+  }
 
-              if (chain.unsupported ?? ![Number(config.network.id)].includes(chain.id)) {
-                return (
-                  <Chip color="disabled" onClick={openChainModal}>
-                    Wrong network
-                  </Chip>
-                );
-              }
+  // Not connected - show connect button
+  if (!isConnected || !address) {
+    return (
+      <Button suppressHydrationWarning variant="secondary" onClick={connect} disabled={isConnecting}>
+        <p>{isConnecting ? "Connecting..." : "Connect"}</p>
+      </Button>
+    );
+  }
 
-              return <ConnectedDetails account={account} isMobile={false} openAccountModal={openAccountModal} />;
-            })()}
-          </div>
-        );
-      }}
-    </RainbowConnectButton.Custom>
-  ) : null;
+  // Connected but wrong network - show switch network button
+  if (chainId !== config.network.id) {
+    return (
+      <Chip color="disabled" onClick={() => switchChain(config.network.id)}>
+        Wrong network
+      </Chip>
+    );
+  }
+
+  // Connected and on correct network - show account details
+  return <ConnectedDetails address={address} isMobile={isMobile} onDisconnect={disconnect} />;
 };
 
 export default dynamic(async () => Promise.resolve(ConnectButton), { ssr: false });

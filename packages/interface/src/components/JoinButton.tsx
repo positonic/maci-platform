@@ -5,9 +5,9 @@ import { zuAuthPopup } from "@pcd/zuauth";
 import { GatekeeperTrait, getZupassGatekeeperData } from "maci-cli/sdk";
 import { useCallback } from "react";
 import { toast } from "sonner";
-import { useAccount } from "wagmi";
 
 import { zupass, config } from "~/config";
+import { useWaaP } from "~/hooks/useWaaP";
 import { useMaci } from "~/contexts/Maci";
 import { useEthersSigner } from "~/hooks/useEthersSigner";
 import { jsonPCD } from "~/utils/types";
@@ -19,7 +19,7 @@ import { Button } from "./ui/Button";
 export const JoinButton = (): JSX.Element => {
   const { isLoading, isRegistered, isEligibleToVote, onSignup, gatekeeperTrait, storeZupassProof } = useMaci();
   const signer = useEthersSigner();
-  const { address } = useAccount();
+  const { address } = useWaaP();
 
   const onError = useCallback(() => toast.error("Signup error"), []);
   const handleSignup = useCallback(() => onSignup(onError), [onSignup, onError]);

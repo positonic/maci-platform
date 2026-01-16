@@ -1,9 +1,9 @@
 import { type UseMutationResult, useMutation } from "@tanstack/react-query";
 import { RegistryManager__factory as RegistryManagerFactory } from "maci-platform-contracts/typechain-types";
 import { createPublicClient, custom, Hex } from "viem";
-import { useAccount } from "wagmi";
 
 import { useRound } from "~/contexts/Round";
+import { useWaaP } from "~/hooks/useWaaP";
 import { type TransactionError } from "~/features/voters/hooks/useApproveVoters";
 import { useEthersSigner } from "~/hooks/useEthersSigner";
 import { useUploadMetadata } from "~/hooks/useMetadata";
@@ -32,7 +32,7 @@ export function useEditProposal(options: {
 }): TUseEditProposalReturn {
   const upload = useUploadMetadata();
 
-  const { chain, address } = useAccount();
+  const { chain, address } = useWaaP();
   const { getRoundByPollId } = useRound();
 
   const roundData = getRoundByPollId(options.pollId);
