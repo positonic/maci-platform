@@ -1,74 +1,30 @@
-import { type Chain, getDefaultConfig, RainbowKitProvider, type Theme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { useMemo, type PropsWithChildren } from "react";
-import { http, WagmiProvider } from "wagmi";
 
 import { Toaster } from "~/components/Toaster";
 import * as appConfig from "~/config";
 import { BallotProvider } from "~/contexts/Ballot";
 import { MaciProvider } from "~/contexts/Maci";
 import { RoundProvider } from "~/contexts/Round";
-
-const theme = lightTheme();
-
-const customTheme: Theme = {
-  blurs: {
-    ...theme.blurs,
-  },
-  colors: {
-    ...theme.colors,
-  },
-  fonts: {
-    body: "var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-  },
-  radii: {
-    ...theme.radii,
-  },
-  shadows: {
-    ...theme.shadows,
-  },
-};
+import { WaaPProvider } from "~/contexts/WaaP";
 
 export const Providers = ({ children }: PropsWithChildren): JSX.Element => {
-  const { config, queryClient } = useMemo(() => createWagmiConfig(), []);
+  const queryClient = useMemo(() => new QueryClient(), []);
 
   return (
     <ThemeProvider attribute="class" forcedTheme={appConfig.theme.colorMode}>
-      <WagmiProvider config={config}>
+      <WaaPProvider>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider theme={customTheme}>
-            <RoundProvider>
-              <MaciProvider>
-                <BallotProvider>{children}</BallotProvider>
+          <RoundProvider>
+            <MaciProvider>
+              <BallotProvider>{children}</BallotProvider>
 
-                <Toaster />
-              </MaciProvider>
-            </RoundProvider>
-          </RainbowKitProvider>
+              <Toaster />
+            </MaciProvider>
+          </RoundProvider>
         </QueryClientProvider>
-      </WagmiProvider>
+      </WaaPProvider>
     </ThemeProvider>
   );
 };
-
-function createWagmiConfig() {
-  const activeChains: Chain[] = [appConfig.config.network];
-
-  const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_ID!;
-  const appName = appConfig.metadata.title;
-
-  const queryClient = new QueryClient();
-
-  const config = getDefaultConfig({
-    appName,
-    projectId,
-    ssr: true,
-    chains: activeChains as unknown as readonly [Chain, ...Chain[]],
-    transports: {
-      [appConfig.config.network.id]: http(appConfig.getRPCURL()),
-    },
-  });
-
-  return { config, queryClient };
-}
