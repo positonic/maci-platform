@@ -1,4 +1,4 @@
-import * as wagmiChains from "wagmi/chains";
+import * as viemChains from "viem/chains";
 
 export const metadata = {
   title: "MACI PLATFORM",
@@ -78,7 +78,7 @@ export const config = {
   eventName: process.env.NEXT_PUBLIC_EVENT_NAME ?? "Add your event name",
   eventDescription: process.env.NEXT_PUBLIC_EVENT_DESCRIPTION ?? "Add your event description",
   admin: (process.env.NEXT_PUBLIC_ADMIN_ADDRESS ?? "") as `0x${string}`,
-  network: wagmiChains[process.env.NEXT_PUBLIC_CHAIN_NAME as keyof typeof wagmiChains],
+  network: viemChains[process.env.NEXT_PUBLIC_CHAIN_NAME as keyof typeof viemChains],
   maciAddress: process.env.NEXT_PUBLIC_MACI_ADDRESS,
   maciStartBlock: Number(process.env.NEXT_PUBLIC_MACI_START_BLOCK ?? 0),
   maciSubgraphUrl: process.env.NEXT_PUBLIC_MACI_SUBGRAPH_URL ?? "",

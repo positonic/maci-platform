@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react";
-import { useAccount } from "wagmi";
+
+import { useWaaP } from "~/hooks/useWaaP";
 
 import type { BallotContextType, BallotProviderProps } from "./types";
 import type { Ballot, Vote } from "~/features/ballot/types";
@@ -16,7 +17,7 @@ export const BallotProvider: React.FC<BallotProviderProps> = ({ children }: Ball
   const [isLoading, setLoading] = useState<boolean>(true);
   const { rounds } = useRound();
 
-  const { isDisconnected } = useAccount();
+  const { isDisconnected } = useWaaP();
 
   // when summing the ballot we take the individual vote and square it
   // if the mode is quadratic voting, otherwise we just add the amount

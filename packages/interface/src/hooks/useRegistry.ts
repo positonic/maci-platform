@@ -1,6 +1,6 @@
 import { DefaultError, useMutation, UseMutationResult } from "@tanstack/react-query";
-import { useAccount } from "wagmi";
 
+import { useWaaP } from "~/hooks/useWaaP";
 import { approveRequest, submitAddRequest, submitEditRequest } from "~/utils/registry";
 
 import type { Hex, TransactionReceipt } from "viem";
@@ -33,7 +33,7 @@ interface SubmitRequestArgs {
  * @returns whether the submission was successful
  */
 export function useSubmitAddRequest(): UseMutationResult<TransactionReceipt, DefaultError, SubmitRequestArgs> {
-  const { chain } = useAccount();
+  const { chain } = useWaaP();
 
   return useMutation({
     mutationFn: async ({ metadataUrl, registryAddress, recipient }: SubmitRequestArgs) =>
@@ -47,7 +47,7 @@ export function useSubmitAddRequest(): UseMutationResult<TransactionReceipt, Def
  * @returns whether the submission was successful
  */
 export function useSubmitEditRequest(): UseMutationResult<TransactionReceipt, DefaultError, SubmitRequestArgs> {
-  const { chain } = useAccount();
+  const { chain } = useWaaP();
 
   return useMutation({
     mutationFn: async ({ metadataUrl, registryAddress, recipient, recipientIndex }: SubmitRequestArgs) =>
@@ -71,7 +71,7 @@ interface SubmitApprovalArgs {
  * @returns whether the approval was successful
  */
 export function useSubmitApproval(): UseMutationResult<boolean, DefaultError, SubmitApprovalArgs> {
-  const { chain } = useAccount();
+  const { chain } = useWaaP();
 
   return useMutation({
     mutationFn: async ({ requestIndex }: SubmitApprovalArgs) => approveRequest(chain!, requestIndex),

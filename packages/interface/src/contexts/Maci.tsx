@@ -14,10 +14,10 @@ import {
   getHatsSingleGatekeeperData,
 } from "maci-cli/sdk";
 import React, { createContext, useContext, useCallback, useEffect, useMemo, useState } from "react";
-import { useAccount, useSignMessage } from "wagmi";
 
 import { config } from "~/config";
 import { useEthersSigner } from "~/hooks/useEthersSigner";
+import { useWaaP } from "~/hooks/useWaaP";
 import { api } from "~/utils/api";
 import { getHatsClient } from "~/utils/hatsProtocol";
 import { generateWitness } from "~/utils/pcd";
@@ -36,7 +36,7 @@ export const MaciContext = createContext<MaciContextType | undefined>(undefined)
  */
 export const MaciProvider: React.FC<MaciProviderProps> = ({ children }: MaciProviderProps) => {
   const signer = useEthersSigner();
-  const { address, isConnected, isDisconnected } = useAccount();
+  const { address, isConnected, isDisconnected, signMessage } = useWaaP();
 
   const [isRegistered, setIsRegistered] = useState<boolean>();
   const [stateIndex, setStateIndex] = useState<string>();
@@ -55,7 +55,6 @@ export const MaciProvider: React.FC<MaciProviderProps> = ({ children }: MaciProv
   const [gatekeeperTrait, setGatekeeperTrait] = useState<GatekeeperTrait | undefined>();
   const [sgData, setSgData] = useState<string | undefined>();
 
-  const { signMessageAsync } = useSignMessage();
   const user = api.maci.user.useQuery(
     { publicKey: maciPubKey ?? "" },
     { enabled: Boolean(maciPubKey && config.maciSubgraphUrl) },
@@ -222,7 +221,7 @@ export const MaciProvider: React.FC<MaciProviderProps> = ({ children }: MaciProv
       return;
     }
 
-    const signature = await signMessageAsync({ message: signatureMessage });
+    const signature = await signMessage(signatureMessage);
     const newSemaphoreIdentity = new Identity(signature);
     const userKeyPair = genKeyPair({ seed: BigInt(signature) });
     localStorage.setItem("maciPrivKey", userKeyPair.privateKey);
@@ -231,7 +230,7 @@ export const MaciProvider: React.FC<MaciProviderProps> = ({ children }: MaciProv
     setMaciPrivKey(userKeyPair.privateKey);
     setMaciPubKey(userKeyPair.publicKey);
     setSemaphoreIdentity(newSemaphoreIdentity);
-  }, [address, signatureMessage, signMessageAsync, setMaciPrivKey, setMaciPubKey, setSemaphoreIdentity]);
+  }, [address, signatureMessage, signMessage, setMaciPrivKey, setMaciPubKey, setSemaphoreIdentity]);
 
   // callback to be called from external component to store the zupass proof
   const storeZupassProof = useCallback(
