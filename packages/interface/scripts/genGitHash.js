@@ -3,7 +3,19 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const commitHash = execSync('git log --pretty=format:"%h" -n1').toString().trim();
+// Get commit hash from Vercel env var, git, or fallback to "unknown"
+let commitHash = "unknown";
+
+// Vercel provides the full SHA, we take first 7 chars to match git short hash
+if (process.env.VERCEL_GIT_COMMIT_SHA) {
+  commitHash = process.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7);
+} else {
+  try {
+    commitHash = execSync('git log --pretty=format:"%h" -n1').toString().trim();
+  } catch {
+    // Not a git repository, keep "unknown"
+  }
+}
 
 const key = "NEXT_PUBLIC_COMMIT_HASH";
 
