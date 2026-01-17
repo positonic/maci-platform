@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd packages/interface && pnpm run build",
-  "installCommand": "corepack enable && pnpm install",
+  "buildCommand": "cd packages/interface && npx pnpm@9 run build",
+  "installCommand": "npx pnpm@9 install",
   "outputDirectory": "packages/interface/.next",
   "framework": "nextjs"
 }
