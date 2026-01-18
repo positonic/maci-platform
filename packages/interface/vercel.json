@@ -1,5 +1,6 @@
 {
   "framework": "nextjs",
   "installCommand": "cd ../.. && npx pnpm@9 install && cd packages/contracts && npx pnpm@9 run build",
-  "buildCommand": "npx pnpm@9 run build"
+  "buildCommand": "npx pnpm@9 run build",
+  "outputDirectory": ".next"
 }
