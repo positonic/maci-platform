@@ -1,7 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "cd packages/interface && npx pnpm@9 run build",
   "installCommand": "npx pnpm@9 install",
-  "outputDirectory": "packages/interface/.next",
-  "framework": "nextjs"
+  "builds": [
+    {
+      "src": "packages/interface/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "installCommand": "echo 'skip install'",
+        "buildCommand": "npx pnpm@9 run build"
+      }
+    }
+  ]
 }
