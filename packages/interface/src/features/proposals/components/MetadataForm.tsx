@@ -171,13 +171,13 @@ export const MetadataForm = ({ pollId }: IMetadataFormProps): JSX.Element => {
                     name={`contributionLinks.${i}.type`}
                     render={({ field: fieldCheckbox }) => (
                       <div className="flex flex-wrap gap-2">
-                        {Object.entries(contributionTypes).map(([optionValue, label]) => (
-                          <label key={optionValue} className="flex items-center gap-2">
+                        {Object.values(contributionTypes).map((label) => (
+                          <label key={label} className="flex items-center gap-2">
                             <input
-                              checked={fieldCheckbox.value === optionValue}
+                              checked={fieldCheckbox.value === label}
                               name={fieldCheckbox.name} // ensures the same radio group
                               type="radio"
-                              value={optionValue}
+                              value={label}
                               onChange={(e) => {
                                 fieldCheckbox.onChange(e.target.value);
                               }}
@@ -224,13 +224,13 @@ export const MetadataForm = ({ pollId }: IMetadataFormProps): JSX.Element => {
                     name={`fundingSources.${i}.type`}
                     render={({ field }) => (
                       <div className="flex flex-wrap gap-2">
-                        {Object.entries(fundingSourceTypes).map(([optionValue, label]) => (
-                          <label key={optionValue} className="flex items-center gap-2">
+                        {Object.values(fundingSourceTypes).map((label) => (
+                          <label key={label} className="flex items-center gap-2">
                             <input
-                              checked={field.value === optionValue}
+                              checked={field.value === label}
                               name={field.name} // ensures the same radio group
                               type="radio"
-                              value={optionValue}
+                              value={label}
                               onChange={(e) => {
                                 field.onChange(e.target.value);
                               }}

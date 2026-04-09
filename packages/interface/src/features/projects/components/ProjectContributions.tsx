@@ -28,11 +28,12 @@ const ProjectContributions = ({ isLoading, project = undefined }: IProjectContri
           label="Contribution Links"
           links={project?.contributionLinks}
           renderItem={(link) => {
-            const icon: LucideIcon | undefined = {
-              CONTRACT_ADDRESS: FileCode,
-              GITHUB_REPO: Github,
-              OTHER: Globe,
-            }[link.type];
+            const iconMap: Record<string, LucideIcon> = {
+              "Contract address": FileCode,
+              "Github repo": Github,
+              Other: Globe,
+            };
+            const icon: LucideIcon | undefined = iconMap[link.type];
             return (
               <>
                 {createElement(icon ?? "div", {

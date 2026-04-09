@@ -28,7 +28,7 @@ export function useSearchProjects({
   return api.projects.search.useInfiniteQuery(
     { search, registryAddress },
     {
-      getNextPageParam: (_, pages) => pages.length,
+      getNextPageParam: () => undefined,
     },
   );
 }

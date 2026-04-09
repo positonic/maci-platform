@@ -204,8 +204,8 @@ export const EditMetadataForm = ({ pollId, project }: IEditMetadataFormProps): J
 
                 <FormControl required name={`contributionLinks.${i}.type`}>
                   <Select>
-                    {Object.entries(contributionTypes).map(([value, label]) => (
-                      <option key={value} value={value}>
+                    {Object.values(contributionTypes).map((label) => (
+                      <option key={label} value={label}>
                         {label}
                       </option>
                     ))}
@@ -235,8 +235,8 @@ export const EditMetadataForm = ({ pollId, project }: IEditMetadataFormProps): J
 
                 <FormControl required name={`fundingSources.${i}.type`}>
                   <Select>
-                    {Object.entries(fundingSourceTypes).map(([value, label]) => (
-                      <option key={value} value={value}>
+                    {Object.values(fundingSourceTypes).map((label) => (
+                      <option key={label} value={label}>
                         {label}
                       </option>
                     ))}

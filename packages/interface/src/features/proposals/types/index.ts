@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { EthAddressSchema } from "~/features/voters/types";
-import { reverseKeys } from "~/utils/reverseKeys";
 
 export const contributionTypes = {
   CONTRACT_ADDRESS: "Contract address",
@@ -41,7 +40,7 @@ export const MetadataSchema = z.object({
     .array(
       z.object({
         description: z.string().min(3),
-        type: z.nativeEnum(reverseKeys(contributionTypes)),
+        type: z.nativeEnum(contributionTypes),
         url: z
           .string()
           .min(1)
@@ -59,7 +58,7 @@ export const MetadataSchema = z.object({
         description: z.string().min(3),
         amount: z.number(),
         currency: z.string().min(3).max(4),
-        type: z.nativeEnum(reverseKeys(fundingSourceTypes)),
+        type: z.nativeEnum(fundingSourceTypes),
       }),
     )
     .default([])

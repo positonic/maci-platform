@@ -9,7 +9,7 @@ export function useProjects(registryAddress: string): UseTRPCInfiniteQueryResult
   return api.projects.projects.useInfiniteQuery(
     { registryAddress, limit: config.pageSize, seed },
     {
-      getNextPageParam: (_, pages) => pages.length,
+      getNextPageParam: () => undefined,
     },
   );
 }

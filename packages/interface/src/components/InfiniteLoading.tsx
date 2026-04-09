@@ -32,7 +32,18 @@ export const InfiniteLoading = <T,>({
     [],
   );
   const pages = useMemo(() => data?.pages ?? [], [data?.pages]);
-  const items = useMemo(() => pages.reduce<T[]>((acc, x) => acc.concat(x), []), [pages]);
+  const items = useMemo(() => {
+    const all = pages.reduce<T[]>((acc, x) => acc.concat(x), []);
+    const seen = new Set<string>();
+    return all.filter((item) => {
+      const id = (item as Record<string, unknown>).id as string | undefined;
+      if (!id || seen.has(id)) {
+        return false;
+      }
+      seen.add(id);
+      return true;
+    });
+  }, [pages]);
 
   const hasMore = useMemo(() => {
     if (!pages.length) {
