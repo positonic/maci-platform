@@ -119,13 +119,13 @@ export const zupass = {
 } as const;
 
 export const impactCategories = {
-  ETHEREUM_INFRASTRUCTURE: { label: "Ethereum Infrastructure" },
-  OPEN_SOURCE: { label: "Web3 Open Source Software" },
-  COMMUNITY_EDUCATION: { label: "Web3 Community & Education" },
-  COLLECTIVE_GOVERNANCE: { label: "Collective Governance" },
-  OP_STACK: { label: "OP Stack" },
-  DEVELOPER_ECOSYSTEM: { label: "Developer Ecosystem" },
-  END_USER_EXPERIENCE_AND_ADOPTION: { label: "End user UX" },
+  PRIVACY_ANONYMITY: { label: "Privacy & Anonymity" },
+  CENSORSHIP_CIRCUMVENTION: { label: "Censorship Circumvention" },
+  INFRASTRUCTURE_RELAYS: { label: "Infrastructure & Relays" },
+  SECURE_COMMUNICATIONS: { label: "Secure Communications" },
+  MEDIA_ARCHIVING: { label: "Media & Archiving" },
+  DIGITAL_SECURITY_TRAINING: { label: "Digital Security & Training" },
+  MEASUREMENT_RESEARCH: { label: "Measurement & Research" },
 } as const;
 
 export const prefixes = {
