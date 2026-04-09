@@ -36,8 +36,8 @@ export const maciRouter = createTRPCRouter({
     const tallyData = await fetchTally(input.tallyAddress);
     return !!tallyData;
   }),
-  rounds: publicProcedure.input(z.object({ polls: z.array(PollSchema) })).query(async ({ input }) =>
-    Promise.all(
+  rounds: publicProcedure.input(z.object({ polls: z.array(PollSchema) })).query(async ({ input }) => {
+    const results = await Promise.allSettled(
       input.polls.map((poll) =>
         fetchMetadata<IRoundMetadata>(poll.metadataUrl).then((metadata) => {
           const data = metadata as unknown as IRoundMetadata;
@@ -66,6 +66,8 @@ export const maciRouter = createTRPCRouter({
           } as IRoundData;
         }),
       ),
-    ),
-  ),
+    );
+
+    return results.filter((r) => r.status === "fulfilled").map((r) => r.value);
+  }),
 });

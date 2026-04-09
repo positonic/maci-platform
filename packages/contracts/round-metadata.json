@@ -1,0 +1,8 @@
+{
+  "roundId": "tor-crowdfunding-test",
+  "description": "Test round for Tor crowdfunding platform on Optimism Sepolia. Private donations using MACI zero-knowledge voting.",
+  "startsAt": "2026-04-09T00:00:00.000Z",
+  "registrationEndsAt": "2026-04-14T00:00:00.000Z",
+  "votingStartsAt": "2026-04-14T00:00:00.000Z",
+  "votingEndsAt": "2026-04-17T00:00:00.000Z"
+}

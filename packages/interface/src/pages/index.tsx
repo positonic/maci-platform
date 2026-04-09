@@ -11,6 +11,7 @@ import { useMaci } from "~/contexts/Maci";
 import { useRound } from "~/contexts/Round";
 import { FAQList } from "~/features/home/components/FaqList";
 import { Glossary } from "~/features/home/components/Glossary";
+import { TorCampaignHome } from "~/features/home/components/TorCampaignHome";
 import { RoundsList } from "~/features/rounds/components/RoundsList";
 import { useIsAdmin } from "~/hooks/useIsAdmin";
 import { Layout } from "~/layouts/DefaultLayout";
@@ -60,6 +61,8 @@ const HomePage = (): JSX.Element => {
             {rounds && rounds.length > 1 && <RoundsList />}
           </div>
         )}
+
+        <TorCampaignHome />
 
         <FAQList />
 

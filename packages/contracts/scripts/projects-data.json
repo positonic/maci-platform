@@ -1,0 +1,130 @@
+[
+  {
+    "name": "OnionShare",
+    "shortBio": "Securely share files, host websites, and chat using the Tor network",
+    "bio": "OnionShare is an open-source tool that makes it easy for people to securely and anonymously share files, host websites, and chat with friends using the Tor network. It is available for Windows, MacOS, and Linux, and it comes preinstalled in operating systems like QubesOS, Tails, and ParrotOS.\n\nOnionShare supports internet freedom by allowing you to host services directly on your computer so third parties don't have access to any of it, and you don't have to trust anybody else's machines. It also protects the anonymity of users from eavesdroppers: even if an attacker learns about the onion service, they still can't access anything so long as the private key is enabled.\n\nJournalists and others needing to securely accept documents from other sources can set up an OnionShare service. They can also set up private, secure chat rooms that don't log anything and leave fewer traces than messaging apps where even disappearing messages may end up saved in notifications databases or on abandoned phones.",
+    "websiteUrl": "https://onionshare.org/",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "onionshare",
+    "contributionDescription": "OnionShare was first released in 2014, and it has seen a slowdown in development in recent years. Unrestricted funding would allow us to focus on essential maintenance, particularly with cross-platform packaging, and will allow for regular rapid releases and dependency updates. We would also use the funding to modernize the user experience, so that OnionShare is more intuitive and better aligned with the needs of today's users.",
+    "impactDescription": "OnionShare enables secure file sharing, website hosting, and chat over Tor, protecting journalists, whistleblowers, and activists worldwide.",
+    "contributionLinks": [
+      {
+        "description": "OnionShare GitHub Repository",
+        "type": "Github repo",
+        "url": "https://github.com/onionshare/onionshare"
+      },
+      { "description": "Demo Video", "type": "Other", "url": "https://www.youtube.com/watch?v=gCDbHkpkNJ0" }
+    ]
+  },
+  {
+    "name": "Ricochet Refresh",
+    "shortBio": "Peer-to-peer encrypted instant messaging over Tor onion services",
+    "bio": "Ricochet-Refresh is a peer-to-peer instant messaging application that prioritizes user privacy and user control by design. The application and protocol are completely decentralized and do not depend on any third party infrastructure apart from the Tor network itself.\n\nRicochet-Refresh works by creating a Tor onion service on your computer, which serves as your anonymous identity and endpoint on the network. When you communicate with a contact, a Tor circuit is established between your machines, routing data through multiple nodes so that no single node knows both the origin and destination — ensuring strong anonymity. All communications are end-to-end encrypted and so message contents are only visible to the parties in a conversation.\n\nThis architecture makes it particularly valuable for protecting freedom of expression among whistleblowers, activists, and journalists worldwide who face surveillance risks. Ricochet-Refresh also bundles the Tor Project's censorship-circumvention tools to enable connectivity even in constrained network environments.\n\nRicochet-Refresh is free and open-source software. It is community-driven with volunteers invited and encouraged to contribute code, report bugs, and suggest features via its GitHub repository.",
+    "websiteUrl": "https://www.ricochetrefresh.net/",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "blueprint-freespeech",
+    "contributionDescription": "Ricochet-Refresh is maintained by Blueprint for Free Speech, a non-profit that works internationally to promote the right to freedom of expression. Unrestricted funding means sustainable, user-driven development that frees the team from the administrative overhead of grant cycles allowing more time for core development work. It would allow the developers to prioritize work based on user needs and impact, ensuring regular security updates, maintenance, and rapid responses to emerging threats.",
+    "impactDescription": "Ricochet Refresh provides fully decentralized, anonymous messaging for whistleblowers, activists, and journalists facing surveillance risks.",
+    "contributionLinks": [
+      {
+        "description": "Ricochet Refresh GitHub Repository",
+        "type": "Github repo",
+        "url": "https://github.com/blueprint-freespeech/ricochet-refresh"
+      }
+    ]
+  },
+  {
+    "name": "Osservatorio Nessuno OdV",
+    "shortBio": "Seizure-resistant Tor relay infrastructure running entirely from RAM",
+    "bio": "A common challenge for Tor operators, particularly Exit node operators, is finding suitable hosting while managing legal and security risks. Past experience has shown that nodes hosted in third-party datacenters can be seized without following legal procedures, while operators with nodes under physical control have had their homes searched and equipment confiscated, including unrelated hardware.\n\nWe approached this by breaking the problem into four subgoals: physical control of nodes to detect seizures, a dedicated space for that purpose, control over the network stack, and minimal stored information.\n\nTo address these, we purchased a small dedicated warehouse, operate our own autonomous system with owned IP addresses, and lease fiber directly from our location to our BGP router at an internet exchange. We also developed software to run Tor nodes exclusively from RAM, with keys sealed against physical attacks using TPM chips via our tool Patela. The boot chain is built entirely from open-source components, Coreboot and Stboot, each measurable and verifiable. At runtime, Patela handles node identity, configuration distribution, and key management without any persistent storage.\n\nThe result are relays that run entirely in RAM, prove what they are running via hardware attestation, and leave nothing behind when powered off.",
+    "websiteUrl": "https://osservatorionessuno.org/",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "osservatorionessuno",
+    "contributionDescription": "The project runs entirely on volunteer time. Support would let us expand from a single location to multiple ones, and more bandwidth means more servers and better network equipment. On the development side, dedicated time would allow us to significantly harden Patela's security model and accelerate work on the surrounding tooling. It would also let us replace additional pieces of the boot and runtime stack with auditable, attestation-capable components.",
+    "impactDescription": "Demonstrates that privacy infrastructure can exist outside commercial hosting environments, with seizure-resistant, attestable Tor relays.",
+    "contributionLinks": [
+      {
+        "description": "Osservatorio Nessuno GitHub",
+        "type": "Github repo",
+        "url": "https://github.com/osservatorionessuno"
+      },
+      {
+        "description": "Patela Blog Post",
+        "type": "Other",
+        "url": "https://osservatorionessuno.org/blog/2025/05/patela-a-basement-full-of-amnesic-servers/"
+      }
+    ]
+  },
+  {
+    "name": "Unredacted",
+    "shortBio": "Global censorship evasion infrastructure: proxies, Tor relays, encrypted messaging",
+    "bio": "Unredacted is a 501(c)(3) nonprofit that builds and operates Internet infrastructure for censorship evasion and secure communications. We run a global network of servers, all on hardware we own in multiple datacenters, serving over 100,000 people.\n\nOur flagship project, FreeSocks, provides free Shadowsocks proxies to people in countries with heavy Internet filtering, with tens of thousands of access keys issued. We operate 120+ high-bandwidth Tor exit relays, 60+ Tor snowflake proxies and bridges, and proxies for Signal and Telegram. Our XMPP.is and Matrix servers provide free, encrypted messaging to 85,000+ users.\n\nWe also run NoiseNet, an experimental anycast network designed to resist traffic correlation attacks, and GreenWare, energy-efficient hardware powering all of our Tor relay fleet. Across all of this, we push hundreds of terabytes of traffic monthly.\n\nAll of our software is open source. All of our services are free. Our goal is simple: keep people connected and private, no matter where they are.",
+    "websiteUrl": "https://unredacted.org",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "unredacted",
+    "contributionDescription": "Most of our budget goes directly to infrastructure. Unrestricted funding lets us scale without choosing between keeping current services running and building new ones. Concretely, it means more FreeSocks proxy capacity, more Tor exit relays, faster development of NoiseNet, and part-time contractors for specialized work volunteers can't cover. It also means we can respond fast when censorship events spike demand.",
+    "impactDescription": "Serves over 100,000 people with censorship evasion tools, operating 120+ Tor exit relays and free encrypted messaging for 85,000+ users.",
+    "contributionLinks": [
+      { "description": "Unredacted GitHub", "type": "Github repo", "url": "https://github.com/unredacted" },
+      {
+        "description": "2025 Year in Review",
+        "type": "Other",
+        "url": "https://unredacted.org/blog/2025/12/a-year-in-review-2025/"
+      }
+    ]
+  },
+  {
+    "name": "Onion Browser",
+    "shortBio": "Tor-endorsed free, open-source anti-censorship browser for iOS",
+    "bio": "Onion Browser is the Tor-endorsed free, open-source anti-censorship browser for Apple's iOS. It provides users with the highest standards of security, privacy, and Internet freedom. By routing all of your encrypted web traffic through Tor, it ensures that browsing activity remains private, history is never saved, and location-based restrictions are bypassed. Onion Browser also enables easy access to the latest cutting-edge network filter circumvention technology, including Obfs4, Snowflake, Web Tunnel, and DNS Turbo Tunnel. Our mission is to provide a transparent, community-audited tool that eliminates targeted advertising and tracking. With customizable security levels for every site, Onion Browser delivers a fast, secure, and truly private web experience, empowering users to reclaim their digital sovereignty.\n\nOnion Browser has been developed for over 10 years by a team at Guardian Project, a primary community partner of Tor. This is the same team behind Orbot, OnionShare for iOS, and developer libraries and tools including tor-android, the core Tor port to Android, Tor.framework the leading Tor port for iOS and macOS, and IPtProxy (the same circumvention library used in Orbot, Tor VPN and Tor Browser for Android).",
+    "websiteUrl": "https://onionbrowser.com/",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "OnionBrowser",
+    "contributionDescription": "Unrestricted funding would enable progress towards porting full Tor Browser to iOS for Europe (porting Firefox Gecko to iOS, navigating Apple/European DMA rules), continued improvement of the circumvention user experience, and maintenance of a polished, Apple-style modern web browser user interface with support across multiple iOS and macOS target devices.",
+    "impactDescription": "The only Tor-endorsed browser for iOS, providing private, censorship-resistant browsing to millions of Apple device users worldwide.",
+    "contributionLinks": [
+      {
+        "description": "Onion Browser GitHub Repository",
+        "type": "Github repo",
+        "url": "https://github.com/OnionBrowser/OnionBrowser"
+      },
+      {
+        "description": "Onion Browser Video Playlist",
+        "type": "Other",
+        "url": "https://www.youtube.com/watch?v=qooaCB_fXSo&list=PL4CVUWabKWeHeBpadBLjzlWVa7binXpj"
+      }
+    ]
+  },
+  {
+    "name": "OONI",
+    "shortBio": "Free tools and open data to detect and document internet censorship worldwide",
+    "bio": "Established in 2012, the Open Observatory of Network Interference (OONI) is a leading nonprofit in the global fight for internet freedom. Born out of the Tor Project, OONI provides free software tools and open data to empower people worldwide to detect, document, and respond to internet censorship.\n\nToday, OONI hosts the world's largest open dataset on internet censorship, comprising more than 3 billion measurements collected since 2012 from 30,000 networks across 245 countries and territories. This data is contributed by OONI's global community, which runs its software each month in most countries to measure the blocking of websites and apps. New measurements are published daily in real time, supporting research, advocacy, and circumvention efforts worldwide.\n\nUsing this data, OONI has produced over 80 research reports documenting censorship events, many cited by international media and used in policy and legal actions, including High Court petitions in Pakistan and Kenya. It has also published over 60 rapid-response reports on emerging censorship incidents.\n\nThrough its decade-long Partnership Program, OONI collaborates with 55 digital rights organizations globally, ensuring its work reflects real-world needs. OONI's impact has been recognized with the 2012 Access Now Freedom of Expression Tech Prize and the 2023 FOCI Community Award.",
+    "websiteUrl": "https://ooni.org",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "ooni",
+    "contributionDescription": "By supporting OONI, you help sustain free and open source tools for measuring internet censorship and maintain the world's largest open dataset on censorship worldwide. Unrestricted funding allows OONI to advance its measurement methodologies, improve the usability and accessibility of its tools, strengthen the resilience of its infrastructure, and expand global coverage.",
+    "impactDescription": "World's largest open dataset on internet censorship: 3 billion+ measurements from 245 countries, enabling research, advocacy, and legal action.",
+    "contributionLinks": [
+      { "description": "OONI GitHub", "type": "Github repo", "url": "https://github.com/ooni" },
+      {
+        "description": "10 Years of OONI Animation",
+        "type": "Other",
+        "url": "https://www.youtube.com/watch?v=AjpfF2kQ9jA"
+      }
+    ]
+  },
+  {
+    "name": "OpenArchive (Save)",
+    "shortBio": "Secure mobile archiving app for journalists and human rights defenders",
+    "bio": "Save is the premiere secure, cross-platform, FLOSS, mobile archiving app that helps journalists, eyewitnesses, and human rights defenders manage their critical evidentiary media workflows while mitigating the risks of surveillance, censorship, and data loss by combining verification, encryption, and flexible storage options.\n\nIt advances internet freedom by offering people sovereignty over the lifecycle of their media from point of capture and during transit, to preserving it on secure, FLOSS servers and at public trusts. It achieves this by circumventing in-transit surveillance and interception by routing media over Tor and TLS, verifying media with Proofmode to make it tamper-evident, and safely preserving it publicly at the Internet Archive, and privately on ethical, FLOSS WebDAV-compatible backends like Nextcloud or our novel secure p2p decentralized backend.\n\nThe tool plays an essential role in the digital archiving and verification ecosystem — streamlining workflows that require trustworthy media capture and preservation, serving as a technical foundation for people handling sensitive, evidentiary, or high-value content. It promotes accessibility — both to the technology it leverages and the media it preserves — by equally prioritizing privacy and usability.",
+    "websiteUrl": "https://www.open-archive.org/",
+    "payoutAddress": "0xc8623C0a97e88F5c61c994aC6c7BeAabB5d85cd5",
+    "github": "OpenArchive",
+    "contributionDescription": "Unrestricted funding will significantly enhance Save's capability and reliability by accelerating core platform development and expanding operational support, including modernizing Android and iOS apps, and improved usability, stability and security through testing and auditing. It will also drive targeted R&D to support ongoing improvements to Tor routing, secure data transfer, and the integration of emerging verification standards such as C2PA.",
+    "impactDescription": "Enables journalists and human rights defenders to securely capture, verify, and preserve evidentiary media while routing over Tor.",
+    "contributionLinks": [
+      { "description": "OpenArchive GitHub", "type": "Github repo", "url": "https://github.com/OpenArchive" }
+    ]
+  }
+]
