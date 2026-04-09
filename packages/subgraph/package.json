@@ -23,6 +23,7 @@
     "create-local": "graph create --node http://localhost:8020/ maci-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ maci-subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 maci-subgraph --network localhost",
+    "deploy:goldsky": "goldsky subgraph deploy maci-platform-subgraph/v1 --path .",
     "deploy:mainnet": "graph deploy --node https://api.studio.thegraph.com/deploy/ maci-subgraph --network mainnet",
     "test": "graph test",
     "test:coverage": "graph test && graph test -c"

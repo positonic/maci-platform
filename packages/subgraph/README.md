@@ -15,5 +15,27 @@
 ```
 
 3. Run `pnpm run build`. You can use env variables `NETWORK` and `VERSION` to switch config files.
-4. Run `graph auth --studio {key}`. You can find the key in subgraph studio dashboard; if you're using alchemy graph, skip this step.
-5. Run `pnpm run deploy` to deploy subgraph; if you're using alchemy graph, run `pnpm run deploy-alchemy --deploy-key {key}` instead.
+4. Deploy to your chosen provider:
+
+### The Graph Studio
+
+```bash
+graph auth --studio {key}  # Key from subgraph studio dashboard
+pnpm run deploy
+```
+
+### Alchemy
+
+```bash
+pnpm run deploy-alchemy --deploy-key {key}
+```
+
+### Goldsky
+
+```bash
+curl https://goldsky.com | sh   # Install CLI (macOS/Linux)
+goldsky login                   # Authenticate with API key from https://app.goldsky.com
+pnpm run deploy:goldsky
+```
+
+After deploying, run `goldsky subgraph list` to get your GraphQL endpoint URL. Set it as `NEXT_PUBLIC_MACI_SUBGRAPH_URL` in the interface `.env`.
