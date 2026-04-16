@@ -29,7 +29,12 @@ export const Layout = ({ children = null, ...props }: ILayoutProps): JSX.Element
       {
         label: "donate",
         href: "/donate",
-        name: "Donate Match Funds",
+        name: "Donate Matching",
+      },
+      {
+        label: "attestation",
+        href: "/attestation",
+        name: "Voter Portal",
       },
     ];
 
