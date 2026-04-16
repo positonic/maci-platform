@@ -16,6 +16,7 @@ import { useProjectMetadata } from "../hooks/useProjects";
 
 import { ProjectContacts } from "./ProjectContacts";
 import { ProjectDescriptionSection } from "./ProjectDescriptionSection";
+import { ProjectDonateSection } from "./ProjectDonateSection";
 
 export interface IProjectDetailsProps {
   pollId: string;
@@ -76,6 +77,8 @@ const ProjectDetails = ({ pollId, project, action = undefined }: IProjectDetails
           {fundingSources && fundingSources.length > 0 && (
             <ProjectDescriptionSection fundings={fundingSources} title="past grants and funding" />
           )}
+
+          <ProjectDonateSection projectId={project.id} projectName={metadata.data?.name} />
 
           {action}
         </div>
