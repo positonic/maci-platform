@@ -1,5 +1,9 @@
+import Link from "next/link";
+
 import { Button } from "~/components/ui/Button";
 import { Heading } from "~/components/ui/Heading";
+
+import { MatchingPoolBalance } from "./MatchingPoolBalance";
 
 const Section = ({ children, id = undefined }: { children: React.ReactNode; id?: string }) => (
   <div className="flex w-full flex-col items-center px-4 py-14 sm:py-20" id={id}>
@@ -34,7 +38,7 @@ export const TorCampaignHome = (): JSX.Element => (
 
       <div className="flex gap-4">
         <Button size="auto" variant="primary">
-          Donate Crypto
+          <Link href="/donate">Donate Crypto</Link>
         </Button>
 
         <Button size="auto" variant="inverted">
@@ -163,7 +167,7 @@ export const TorCampaignHome = (): JSX.Element => (
         <SponsorBadge description="Additional sponsors" name="More Coming" />
       </div>
 
-      <p className="mt-6 text-center text-sm italic text-gray-500 dark:text-gray-400">Total matching pool: TBD</p>
+      <MatchingPoolBalance />
     </Section>
 
     {/* Built for Privacy */}

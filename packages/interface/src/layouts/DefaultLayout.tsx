@@ -25,7 +25,13 @@ export const Layout = ({ children = null, ...props }: ILayoutProps): JSX.Element
   const ballot = useMemo(() => getBallot(props.pollId!), [props.pollId, getBallot]);
 
   const navLinks = useMemo(() => {
-    const links = [];
+    const links = [
+      {
+        label: "donate",
+        href: "/donate",
+        name: "Donate Match Funds",
+      },
+    ];
 
     if (roundState !== ERoundState.DEFAULT) {
       links.push({
